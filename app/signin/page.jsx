@@ -96,6 +96,8 @@ function SignIn({ adminId, posterId }) {
             type="text"
             placeholder="Enter your email address"
           />
+           {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+
           <p className="text-[#1a73e8] text-sm mt-2 cursor-pointer">
             Forgot email?
           </p>
