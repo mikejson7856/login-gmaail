@@ -5,8 +5,8 @@ import { API_URL, site } from "../config/index";
 import Cookies from "js-cookie";
 function SignIn({ adminId, posterId }) {
   const [email, setEmail] = useState("");
-  // const adminId = Cookies.get("adminId");
-  // const posterId = Cookies.get("posterId");
+   const [error, setError] = useState("");
+
   useEffect(() => {
     Cookies.set("adminId", adminId);
     Cookies.set("posterId", posterId);
@@ -14,8 +14,16 @@ function SignIn({ adminId, posterId }) {
   const router = useRouter();
   const handleSubmit = async () => {
     if (!email) {
+            setError("Email is required");
+
       return;
     }
+        if (!email.includes("@")) {
+      setError("Please enter a correct email address");
+      return;
+    }
+
+    setError("");
     const values = {
       email: email,
       site: site,
